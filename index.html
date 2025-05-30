@@ -10,27 +10,37 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <header class="text-white text-center py-5">
     <div class="container">
-      <a class="navbar-brand" href="#">Buscador de Dragon Ball</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <h1 class="display-5">Buscador de Dragon Ball</h1>
+      <p class="lead">Encuentra a tus personajes favoritos con este buscador</p>
     </div>
-  </nav>
+  </header>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Indique un personaje" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Busqueda</button>
-          <p>.</p>
-          <button class="btn btn-outline-success" type="submit">Limpiar</button>
-        </form>
-      </div>
+      <input class="form-control me-2" type="search" placeholder="Indique un personaje" aria-label="Search">
+      <button id="boton-src" class="btn btn-outline-success" >Busqueda</button>
+      <p>.</p>
+      <button id="" class="btn btn-outline-success" >Limpiar</button>
     </div>
   </nav>
+  <div id="contenedor-data" class="row">
+    <!-- ACA SE AGREGAN LOS DATOS CON JAVASCRIPT -->
+    <!-- CADA CARTA  -->
+    <!-- <div class="col-3 pb-2 d-flex justify-content-center">
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="https://dragonball-api.com/characters/goku_normal.webp"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Goku</h5>
+          <p class="card-text">Saiyan - Male</p>
+        </div>
+      </div>
+    </div> -->
+  </div>
 
   <footer class="bg-dark text-white text-center py-3">
     <p class="mb-0">&copy; 2025 Franco Sian, Leandro Francisco - Buscador de Dragon Ball </p>

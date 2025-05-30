@@ -1,4 +1,4 @@
-const btnBuscar = document.getElementById("btn-buscar");
+const btnBuscar = document.getElementById("boton-src");
 const contenedorPadre = document.getElementById("contenedor-data");
 const urlDragonBall = "https://dragonball-api.com/api/characters";
 
