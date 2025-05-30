@@ -43,3 +43,7 @@ footer {
   padding: 15px 0;
   margin-top: auto;
 }
+
+.card {
+  width: 200px;
+}
