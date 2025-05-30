@@ -34,7 +34,7 @@ btnBuscar.addEventListener("click", async () => {
     const data = await cargarDatos(urlDragonBall);
     dataPersonajes = data.items;
     alert("Ningún personaje seleccionado, mostrando todos.");
-    
+
   } else {
     dataPersonajes = await cargarDatos(`${urlDragonBall}&name=${campo_busqueda}`);
   }
@@ -53,7 +53,6 @@ btnBuscar.addEventListener("click", async () => {
               <div class="card-body">
                 <h5 class="card-title">${personaje.name}</h5>
                 <p class="card-text">${personaje.race} - ${personaje.gender}</p>
-                <button class="btn btn-success btn-ver-detalles">Ver más</button>
               </div>
             </div>
           </div>
