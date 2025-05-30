@@ -1,8 +1,8 @@
 const btnBuscar = document.getElementById("boton-src");
 const btnLimpiar = document.getElementById("boton-clear");
 const contenedorPadre = document.getElementById("contenedor-data");
-const urlDragonBall = "https://dragonball-api.com/api/characters";
-
+const urlDragonBall = "https://dragonball-api.com/api/characters?limit=58";
+let dataPersonajes;
 
 
 const cargarDatos = async (urlDragonBall) => {
@@ -14,8 +14,6 @@ const cargarDatos = async (urlDragonBall) => {
     }
 
     const data = await response.json();
-
-
     return data;
   } catch (error) {
     console.log(error);
@@ -30,10 +28,18 @@ btnLimpiar.addEventListener("click", async () => {
 
 // Botón de Búsqueda por nombre
 btnBuscar.addEventListener("click", async () => {
-  let nombre = document.getElementById("area-busqueda").value;
-
-  let dataPersonajes = await cargarDatos(`${urlDragonBall}?name=${nombre}`);
+  let campo_busqueda = document.getElementById("area-busqueda").value;
+  
+  if (!campo_busqueda) {
+    const data = await cargarDatos(urlDragonBall);
+    dataPersonajes = data.items;
+    alert("Ningún personaje seleccionado, mostrando todos.");
+    
+  } else {
+    dataPersonajes = await cargarDatos(`${urlDragonBall}&name=${campo_busqueda}`);
+  }
   console.log(dataPersonajes);
+
   contenedorPadre.innerHTML = ""
   
   dataPersonajes.forEach((personaje) => {
@@ -53,5 +59,4 @@ btnBuscar.addEventListener("click", async () => {
           </div>
       `;
   });
-
 });
