@@ -1,10 +1,13 @@
 const btnBuscar = document.getElementById("boton-src");
+const btnLimpiar = document.getElementById("boton-clear");
 const contenedorPadre = document.getElementById("contenedor-data");
 const urlDragonBall = "https://dragonball-api.com/api/characters";
 
-const cargarDatos = async (url) => {
+
+
+const cargarDatos = async (urlDragonBall) => {
   try {
-    const response = await fetch(url);
+    const response = await fetch(urlDragonBall);
 
     if (!response.ok) {
       throw new error("Error en la API");
@@ -12,11 +15,20 @@ const cargarDatos = async (url) => {
 
     const data = await response.json();
 
+
     return data;
   } catch (error) {
     console.log(error);
   }
 };
+
+
+// const respuesta = await fetch(`${urlDragonBall}?name=${nombre}`);
+
+let thingy = 0;
+btnLimpiar.addEventListener("click", async () => {
+  contenedorPadre.innerHTML = ""
+});
 
 const verDetalles = async (id) => {
   try {
@@ -28,25 +40,36 @@ const verDetalles = async (id) => {
 
     const data = await response.json();
 
-    alert(data.description);
+    if(data.items){
+      return data.items
+    }
+
+    return data;
   } catch (error) {
     console.log(error);
   }
 };
 
+ // const dataPersonajes = await cargarDatos(urlDragonBall);
+ // console.log(dataPersonajes);
+ // contenedorPadre.innerHTML = ""
+
 btnBuscar.addEventListener("click", async () => {
-  const data = await cargarDatos(urlDragonBall);
-  const dataPersonajes = data.items;
+  let nombre = document.getElementById("area-busqueda").value;
+  
 
+
+  let dataPersonajes = await cargarDatos(`${urlDragonBall}?name=${nombre}`);
   console.log(dataPersonajes);
-
+  contenedorPadre.innerHTML = ""
+  
   dataPersonajes.forEach((personaje) => {
     contenedorPadre.innerHTML += `
-          <div class="col-3 pb-2 d-flex justify-content-center" data-id=${personaje.id}>
+          <div id="thingyBingy" class="col-3 pb-2 d-flex justify-content-center" data-id=${personaje.id}>
             <div class="card">
               <img
                 class="card-img-top"
-                src=${personaje.image}
+                src='${personaje.image}'
               />
               <div class="card-body">
                 <h5 class="card-title">${personaje.name}</h5>
@@ -57,6 +80,7 @@ btnBuscar.addEventListener("click", async () => {
           </div>
       `;
   });
+
 });
 
 contenedorPadre.addEventListener("click", (e) => {
