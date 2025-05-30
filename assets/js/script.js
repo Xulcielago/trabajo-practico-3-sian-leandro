@@ -23,41 +23,14 @@ const cargarDatos = async (urlDragonBall) => {
 };
 
 
-// const respuesta = await fetch(`${urlDragonBall}?name=${nombre}`);
-
-let thingy = 0;
+// Botón de Limpiar
 btnLimpiar.addEventListener("click", async () => {
   contenedorPadre.innerHTML = ""
 });
 
-const verDetalles = async (id) => {
-  try {
-    const response = await fetch(`${urlDragonBall}/${id}`);
-
-    if (!response.ok) {
-      throw new error("Error en la API");
-    }
-
-    const data = await response.json();
-
-    if(data.items){
-      return data.items
-    }
-
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
- // const dataPersonajes = await cargarDatos(urlDragonBall);
- // console.log(dataPersonajes);
- // contenedorPadre.innerHTML = ""
-
+// Botón de Búsqueda por nombre
 btnBuscar.addEventListener("click", async () => {
   let nombre = document.getElementById("area-busqueda").value;
-  
-
 
   let dataPersonajes = await cargarDatos(`${urlDragonBall}?name=${nombre}`);
   console.log(dataPersonajes);
@@ -81,14 +54,4 @@ btnBuscar.addEventListener("click", async () => {
       `;
   });
 
-});
-
-contenedorPadre.addEventListener("click", (e) => {
-  if (e.target.classList.contains("btn-ver-detalles")) {
-    // accediendo al padre mas cercano
-    const cardPadre = e.target.closest(".col-3");
-    const id = cardPadre.dataset.id;
-
-    verDetalles(id);
-  }
 });
